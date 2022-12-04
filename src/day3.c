@@ -6,7 +6,6 @@
 #include "src/day3_input1_preproc.h"
 
 void sold3_1(void){
-
 	size_t sum = 0;
 
 	for(int i = 0; i < input_count; ++i){
@@ -34,20 +33,16 @@ void sold3_1(void){
 				}
 			}
 		}
-
 	}
-
 
 	printf("%lu\n", sum);
 }
 
 void sold3_2(void){
-
 	size_t sum = 0;
 
 	for(int i = 0; i < input_count; i += 3){
 		int lethas[52] = {0};
-
 		for(int t = 0; t < 3; ++t){
 			char *string = strdup(input[i+t]);
 			size_t len = strlen(string);
@@ -68,7 +63,6 @@ void sold3_2(void){
 				break;
 			}
 		}
-
 	}
 
 	printf("%lu\n", sum);
