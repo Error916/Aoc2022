@@ -1,0 +1,6 @@
+big boy for AoC day #4
+url    https://0x0.st/okvq.txt
+size   111M
+lines  10000000
+silver 3466900
+gold   6734252

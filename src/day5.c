@@ -6,19 +6,15 @@
 
 void sold5_1(void){
 	Stack creates[MAX_CREATES] = {0};
-	memcpy(creates, input_formation, sizeof(Stack) * MAX_CREATES);
+	memcpy(creates, input_formation, sizeof(creates));
 	for(int i = 0; i < input_count; i += 3){
 		for(int j = 0; j < input[i]; ++j){
-			if(creates[input[i + 1] - 1].top + 1 > 0){
-				// Pop
-				char box = creates[input[i + 1] - 1].arr[creates[input[i + 1] - 1].top];
-				creates[input[i + 1] - 1].arr[creates[input[i + 1] - 1].top] = '!';
-				creates[input[i + 1] - 1].top--;
+			char box = creates[input[i + 1] - 1].arr[creates[input[i + 1] - 1].top];
+			creates[input[i + 1] - 1].arr[creates[input[i + 1] - 1].top] = '!';
+			creates[input[i + 1] - 1].top--;
 
-				// Insert
-				creates[input[i + 2] - 1].top++;
-				creates[input[i + 2] - 1].arr[creates[input[i + 2] - 1].top] = box;
-			}
+			creates[input[i + 2] - 1].top++;
+			creates[input[i + 2] - 1].arr[creates[input[i + 2] - 1].top] = box;
 		}
 	}
 
@@ -30,7 +26,7 @@ void sold5_1(void){
 
 void sold5_2(void){
 	Stack creates[MAX_CREATES] = {0};
-	memcpy(creates, input_formation, sizeof(Stack) * MAX_CREATES);
+	memcpy(creates, input_formation, sizeof(creates));
 	for(int i = 0; i < input_count; i += 3){
 		for(int j = 0; j < input[i]; ++j){
 			size_t index = creates[input[i + 1] - 1].top - (input[i] - 1) + j;
