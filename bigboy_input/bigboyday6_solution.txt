@@ -1,0 +1,5 @@
+big boy #6
+url:    https://0x0.st/ods8.txt.7z
+bytes:  96M
+silver: 85760445
+gold:   91845017
