@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LBUFF 4000
-#define LDATA LBUFF
+#include "src/day7_input1_preproc.h"
 
 struct file {
 	char name[20];
@@ -33,7 +32,7 @@ struct dir root = {
 
 struct dir *cwd = NULL;
 
-void dir(char *dir){
+void dir(const char *dir){
 	int idx = cwd->dirs_count;
 	cwd->dirs = realloc(cwd->dirs, sizeof(struct dir) * ++cwd->dirs_count);
 
@@ -45,7 +44,7 @@ void dir(char *dir){
 	cwd->dirs[idx].files = NULL;
 }
 
-void file(char *file){
+void file(const char *file){
 	int idx = cwd->files_count;
 	cwd->files = realloc(cwd->files, sizeof(struct file) * ++cwd->files_count);
 
@@ -56,14 +55,14 @@ void file(char *file){
 	cwd->files[idx].size = atoi(file);
 }
 
-void filedir(char *filedir){
+void filedir(const char *filedir){
 	if(filedir[0] == 'd')
 		dir(filedir);
 	else
 		file(filedir);
 }
 
-void cd(char *cmd){
+void cd(const char *cmd){
 	if(cmd[5] == '/'){
 		cwd = &root;
 	} else if(cmd[5] == '.'){
@@ -75,9 +74,9 @@ void cd(char *cmd){
 	}
 }
 
-void ls(char *cmd){}
+void ls(const char *cmd){}
 
-void command(char *cmd){
+void command(const char *cmd){
 	if(cmd[2] == 'c')
 		cd(cmd);
 	else
@@ -133,27 +132,34 @@ int traverse_sum2(struct dir *d, int total, int *smallest){
 	return size;
 }
 
-int main(int argc, char **argv){
-
-	char buff[LBUFF];
-	while(fgets(buff, LBUFF, stdin) != NULL){
-		if(buff[0] == '$')
-			command(buff);
-		else
-			filedir(buff);
-	}
-
+void sold7_1(void){
 	int sum = 0;
 	int total = traverse_sum(&root, &sum);
 
 	printf("%d\n", sum);
+}
 
+void sold7_2(void){
+	int sum = 0;
+	int total = traverse_sum(&root, &sum);
 	total = 30000000 - (70000000 - total);
-
 	int smallest = 70000000;
 	traverse_sum2(&root, total, &smallest);
 
 	printf("%d\n", smallest);
+}
+
+int main(int argc, char **argv){
+
+	for(int i = 0; i < input_count; ++i){
+		if(input[i][0] == '$')
+			command(input[i]);
+		else
+			filedir(input[i]);
+	}
+
+	sold7_1();
+	sold7_2();
 
 	return 0;
 }
