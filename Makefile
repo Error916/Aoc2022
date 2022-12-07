@@ -1,4 +1,4 @@
-CFLAGS=-std=c11 -pedantic -Wall -Wextra -Werror -Wfatal-errors -O3 -march=native -pipe
+CFLAGS=-pedantic -Wall -Wextra -Werror -Wfatal-errors -Ofast -march=native -pipe
 LIBS=
 SRC=main.c
 CC=gcc

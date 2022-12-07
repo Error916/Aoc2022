@@ -1,0 +1,9 @@
+big boy #7
+url:    https://0x0.st/odZd.txt.7z
+bytes:  13M
+dirs:   100K
+files:  ~1M
+total disk space is 3000000000
+you need 700000000 for the update
+silver: 2414990429
+gold:   923977224
