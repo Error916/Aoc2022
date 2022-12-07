@@ -33,7 +33,7 @@ struct dir root = {
 struct dir *cwd = NULL;
 
 void dir(const char *dir){
-	int idx = cwd->dirs_count;
+	size_t idx = cwd->dirs_count;
 	cwd->dirs = realloc(cwd->dirs, sizeof(struct dir) * ++cwd->dirs_count);
 
 	strcpy(cwd->dirs[idx].name, &dir[4]);
@@ -45,10 +45,10 @@ void dir(const char *dir){
 }
 
 void file(const char *file){
-	int idx = cwd->files_count;
+	size_t idx = cwd->files_count;
 	cwd->files = realloc(cwd->files, sizeof(struct file) * ++cwd->files_count);
 
-	int i;
+	size_t i;
 	for(i = 0; file[i] != ' '; ++i){}
 	strcpy(cwd->files[idx].name, &file[i + 1]);
 	cwd->files[idx].parent = cwd;
@@ -68,13 +68,15 @@ void cd(const char *cmd){
 	} else if(cmd[5] == '.'){
 		cwd = cwd->parent;
 	} else {
-		for(int i = 0; i < cwd->dirs_count; ++i)
+		for(size_t i = 0; i < cwd->dirs_count; ++i)
 			if(!strcmp(&cmd[5], cwd->dirs[i].name))
 				cwd = &cwd->dirs[i];
 	}
 }
 
-void ls(const char *cmd){}
+void ls(const char *cmd){
+	(void)cmd;
+}
 
 void command(const char *cmd){
 	if(cmd[2] == 'c')
@@ -83,30 +85,13 @@ void command(const char *cmd){
 		ls(cmd);
 }
 
-void traverse_print(struct dir *d, int depth){
-	for(int i = 0; i < d->dirs_count; ++i){
-		for(int s = 0; s < depth; ++s){
-			printf(" ");
-		}
-		printf("- %s", d->dirs[i].name);
-		traverse_print(&d->dirs[i], depth + 1);
-	}
-
-	for(int i = 0; i < d->files_count; ++i){
-		for(int s = 0; s < depth; ++s){
-			printf(" ");
-		}
-		printf("- %s", d->files[i].name);
-	}
-}
-
-int traverse_sum(struct dir *d, int *total){
-	int size = 0;
-	for(int i = 0; i < d->dirs_count; ++i){
+size_t traverse_sum(struct dir *d, size_t *total){
+	size_t size = 0;
+	for(size_t i = 0; i < d->dirs_count; ++i){
 		size += traverse_sum(&d->dirs[i], total);
 	}
 
-	for(int i = 0; i < d->files_count; ++i){
+	for(size_t i = 0; i < d->files_count; ++i){
 		size += d->files[i].size;
 	}
 
@@ -116,13 +101,13 @@ int traverse_sum(struct dir *d, int *total){
 	return size;
 }
 
-int traverse_sum2(struct dir *d, int total, int *smallest){
-	int size = 0;
-	for(int i = 0; i < d->dirs_count; ++i){
+size_t traverse_sum2(struct dir *d, size_t total, size_t *smallest){
+	size_t size = 0;
+	for(size_t i = 0; i < d->dirs_count; ++i){
 		size += traverse_sum2(&d->dirs[i], total, smallest);
 	}
 
-	for(int i = 0; i < d->files_count; ++i){
+	for(size_t i = 0; i < d->files_count; ++i){
 		size += d->files[i].size;
 	}
 
@@ -133,25 +118,25 @@ int traverse_sum2(struct dir *d, int total, int *smallest){
 }
 
 void sold7_1(void){
-	int sum = 0;
-	int total = traverse_sum(&root, &sum);
+	size_t sum = 0;
+	traverse_sum(&root, &sum);
 
-	printf("%d\n", sum);
+	printf("%lu\n", sum);
 }
 
 void sold7_2(void){
-	int sum = 0;
-	int total = traverse_sum(&root, &sum);
+	size_t sum = 0;
+	size_t total = traverse_sum(&root, &sum);
 	total = 30000000 - (70000000 - total);
-	int smallest = 70000000;
+	size_t smallest = 70000000;
 	traverse_sum2(&root, total, &smallest);
 
-	printf("%d\n", smallest);
+	printf("%lu\n", smallest);
 }
 
 int main(int argc, char **argv){
 
-	for(int i = 0; i < input_count; ++i){
+	for(size_t i = 0; i < input_count; ++i){
 		if(input[i][0] == '$')
 			command(input[i]);
 		else
