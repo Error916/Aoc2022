@@ -1,0 +1,7 @@
+big boy #8
+url: 	https://0x0.st/oduK.txt.xz
+bytes:	96M
+width:	10000
+heigth: 10000
+silver: 252139
+gold:   82629770164920
