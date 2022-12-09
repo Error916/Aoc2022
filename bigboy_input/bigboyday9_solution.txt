@@ -1,0 +1,6 @@
+big boy #9
+url:    https://0x0.st/odOg.txt.7z
+bytes:  ~4M
+moves:  1M
+silver: 6157377
+gold:   3809863
