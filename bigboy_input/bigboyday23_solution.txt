@@ -1,0 +1,6 @@
+big boy for AoC day #23
+https://0x0.st/o5Jc.txt
+silver: 34970
+time: 193ms
+gold: 5531
+time: 133528ms

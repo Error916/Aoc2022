@@ -1,0 +1,6 @@
+big boy for AoC day #2
+url: https://0x0.st/odUF.7z
+bytes: 92M
+insns: 24M
+silver: 119988948
+gold: 119990335

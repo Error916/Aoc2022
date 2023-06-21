@@ -1,0 +1,19 @@
+url: https://0x0.st/odUF.7z
+
+big boy #1
+bytes: 107M
+elves: ~1M
+silver: 4368180
+gold: 12967759
+
+big boy #2:
+bytes: 92M
+insns: 24M
+silver: 119988948
+gold: 119990335
+
+big boy #3:
+bytes: 65M
+sacks: 5M
+silver: 119031205
+gold: 31562325

@@ -1,0 +1,6 @@
+big boy for AoC day #1
+url: https://0x0.st/odUF.7z
+bytes: 107M
+elves: ~1M
+silver: 4368180
+gold: 12967759
